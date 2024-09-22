@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@data/*": ["data/*"],
+      "@components/*": ["components/*"],
+      "@/*": ["*"] // This allows access to all directories from the root
     }
   }
 }
