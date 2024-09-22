@@ -1,10 +1,10 @@
 import Papa from 'papaparse';
 import fs from 'fs';
 import path from 'path';
-import { useState } from 'react';
 import Header from '@/components/Header.js';
 import { useRouter } from 'next/router';
 import clubLogos from '@data/clubdata.js';
+import withAuthentication from '@/firebase/withAuthentication';
 
 export async function getStaticProps() {
   const playersFilePath = path.join(process.cwd(), 'data', 'players.csv');
@@ -65,4 +65,4 @@ const TeamPage = ({ playersData, teamsData }) => {
   );
 };
 
-export default TeamPage;
+export default withAuthentication(TeamPage);

@@ -37,6 +37,7 @@ export default function Login() {
       await signInWithPopup(auth, provider);
       const user = auth.currentUser;
       sessionStorage.setItem('email', user.email);
+      sessionStorage.setItem('profilePhoto', user.photoURL);
       localStorage.setItem('isLoggedIn', 'true');
       router.push('/');
     } catch (error) {

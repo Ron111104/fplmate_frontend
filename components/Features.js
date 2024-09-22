@@ -5,7 +5,7 @@ export default function Features() {
     {
       title: 'Weekly Predictions',
       description: 'AI-based gameweek predictions using player form and injury status.',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLQxl9trJvsn3ffd8wl0uuE8O3UHSj5tfmvA&s',
+      image: 'https://images.news18.com/ibnlive/uploads/2024/07/fpl-2024-07-fb4f3a210d7a30bc6a8561aee8f4c885.jpg',
     },
     {
       title: 'Transfer Recommendations',

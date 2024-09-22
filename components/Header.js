@@ -5,25 +5,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
-
+import { getAuth, signOut } from 'firebase/auth';
+import { auth } from '@firebase/firebaseConfig'; // Adjust the path accordingly
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
+  const [profilePhoto, setProfilePhoto] = useState(null);
 
   useEffect(() => {
     const loggedInStatus = localStorage.getItem("isLoggedIn");
     const email = sessionStorage.getItem("email");
+    const photo = sessionStorage.getItem("profilePhoto"); // Get profile photo URL
     setIsLoggedIn(loggedInStatus === "true" && email !== null && email !== "");
+    setProfilePhoto(photo); // Set profile photo URL
+    console.log(photo);
   }, []);
   
   // Logout function
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    sessionStorage.removeItem("email"); // Clear email from sessionStorage
-    setIsLoggedIn(false);
-    router.push("/login");
+  const handleLogout = async () => {
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      setIsLoggedIn(false);
+      router.push("/login");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
   };
 
   const toggleProfileDropdown = () => {
@@ -57,19 +66,19 @@ export default function Header() {
           {isLoggedIn ? (
             <div className="relative">
               <button onClick={toggleProfileDropdown} className="flex items-center space-x-2">
-                <img
-                  src="https://www.shutterstock.com/image-photo/close-head-shot-portrait-preppy-260nw-1433809418.jpg"
+                <Image
+                  src={profilePhoto || "https://www.shutterstock.com/image-photo/close-head-shot-portrait-preppy-260nw-1433809418.jpg"}
                   alt="User Avatar"
                   className="w-10 h-10 rounded-full object-cover"
+                  width={40}
+                  height={40}
                 />
                 <FontAwesomeIcon icon={faChevronDown} className="text-black" />
               </button>
               {isProfileOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 shadow-md rounded-lg  z-30">
+                <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 shadow-md rounded-lg z-30">
                   <Link href="/profile" className="block w-full text-left px-4 py-2 text-black hover:bg-gray-100">Profile</Link>
-                  <button onClick={handleLogout} className="block w-full text-left px-4 py-2 text-black hover:bg-gray-100">
-                    Logout
-                  </button>
+                  <button onClick={handleLogout} className="block w-full text-left px-4 py-2 text-black hover:bg-gray-100">Logout</button>
                 </div>
               )}
             </div>

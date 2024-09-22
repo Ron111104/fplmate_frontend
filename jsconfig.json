@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@data/*": ["data/*"],
+      "@firebase/*": ["firebase/*"],
       "@components/*": ["components/*"],
       "@/*": ["*"] // This allows access to all directories from the root
     }
