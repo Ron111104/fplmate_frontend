@@ -48,30 +48,35 @@ const TeamAnalysisPage = ({ team, filteredPlayers }) => {
   const averagePredictedPoints = sortedPlayers.length ? (totalPredictedPoints / sortedPlayers.length).toFixed(2) : 0;
 
   return (
-    <div className=" min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white">
       <Header />
-      <div className="container mx-auto p-6 bg-white rounded-lg shadow-lg">
-        <h1 className="text-4xl font-bold mb-4 text-center animate-bounce">Performance Analysis for {team.name}</h1>
-        <p className="text-lg font-semibold text-center mb-4">Predictions based on previous season performance.</p>
+      <div className="container mx-auto p-6 bg-white rounded-lg shadow-lg space-y-6">
+        <h1 className="text-4xl font-bold mb-2 text-center animate-bounce text-blue-700">{`Performance Analysis for ${team.name}`}</h1>
+        <p className="text-lg font-semibold text-center mb-4 text-gray-600">Predictions based on previous season performance.</p>
 
         {/* Player Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {sortedPlayers.length > 0 ? (
             sortedPlayers.map((player) => (
-              <div className="transform transition-transform hover:scale-105 hover:shadow-2xl rounded-lg overflow-hidden" key={player.id}>
-                <PlayerCard player={player} className="h-full" />
+              <div
+                className="rounded-lg bg-gray-50 hover:shadow-lg transition-shadow duration-300 ease-in-out"
+                key={player.id}
+              >
+                <div className="transform transition-transform duration-300 ease-in-out hover:scale-105">
+                  <PlayerCard player={player} className="h-full" />
+                </div>
               </div>
             ))
           ) : (
-            <p className="text-center text-lg">No players found for this team.</p>
+            <p className="text-center text-lg text-red-600">No players found for this team.</p>
           )}
         </div>
 
         {/* Summary Section */}
         <div className="mt-6 text-center">
-          <p className="text-md">Total Players: {sortedPlayers.length}</p>
-          <p className="text-md">Total Predicted Points: {totalPredictedPoints}</p>
-          <p className="text-md">Average Predicted Points per Player: {averagePredictedPoints}</p>
+          <p className="text-md font-semibold">Total Players: <span className="font-bold text-blue-600">{sortedPlayers.length}</span></p>
+          <p className="text-md font-semibold">Total Predicted Points: <span className="font-bold text-blue-600">{totalPredictedPoints}</span></p>
+          <p className="text-md font-semibold">Average Predicted Points per Player: <span className="font-bold text-blue-600">{averagePredictedPoints}</span></p>
         </div>
       </div>
     </div>

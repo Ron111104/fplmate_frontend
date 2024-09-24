@@ -48,14 +48,16 @@ export default function Header() {
         transition={{ duration: 0.6 }}
       >
         <div className="flex items-center">
-          <Image
-            src="/assets/logo.png"
-            alt="FPLMate Logo"
-            className="h-[50px] w-auto"
-            height={100}
-            width={150}
-          />
-        </div>
+  <Link href="/">
+      <Image
+        src="/assets/logo.png"
+        alt="FPLMate Logo"
+        className="h-[50px] w-auto"
+        height={100}
+        width={150}
+      />
+  </Link>
+</div>
 
         <nav className="space-x-8 hidden md:flex items-center">
           <Link href="/" className="text-black">Home</Link>
