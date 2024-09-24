@@ -28,7 +28,7 @@ const PlayerCard = ({ player }) => {
   const wikiUrl = `https://en.wikipedia.org/wiki/${player.first_name.split(' ')[0]}_${player.second_name.split(' ')[0]}`;
 
   return (
-    <div className="max-w-xs rounded-xl shadow-xl overflow-hidden flex flex-col">
+    <div className="max-w-sm  rounded-xl shadow-xl overflow-hidden flex flex-col">
       {/* Flipping Section */}
       <div className="relative h-60" onClick={handleFlip}>
         {/* Front Side */}
@@ -107,7 +107,7 @@ const PlayerCard = ({ player }) => {
             rel="noopener noreferrer"
             className="text-sm text-blue-500 underline hover:text-blue-700"
           >
-            Click Here To know more about the player
+            Click here to know more
           </a>
         </div>
         </motion.div>

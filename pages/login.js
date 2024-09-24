@@ -62,7 +62,7 @@ export default function Login() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-extrabold text-center text-gray-900 mb-6">Log In to FPL MATE</h2>
+        <h2 className="text-3xl font-extrabold text-center text-gray-900 mb-6">Log In to FPLMate</h2>
         <form onSubmit={handleLogin} className="space-y-5">
           <div>
             <label className="block text-sm font-medium text-gray-700">Email</label>

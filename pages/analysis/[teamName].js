@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import PlayerCard from '../../components/PlayerCard.js';
 import Header from '@/components/Header.js';
-
+import { motion } from 'framer-motion';
 export async function getStaticPaths() {
   const teamsFilePath = path.join(process.cwd(), 'data', 'teams.csv');
   const teamsFile = fs.readFileSync(teamsFilePath, 'utf-8');
@@ -48,23 +48,29 @@ const TeamAnalysisPage = ({ team, filteredPlayers }) => {
   const averagePredictedPoints = sortedPlayers.length ? (totalPredictedPoints / sortedPlayers.length).toFixed(2) : 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white">
+    <div
+      className="min-h-screen bg-cover bg-center bg-no-repeat bg-white"
+    >
       <Header />
-      <div className="container mx-auto p-6 bg-white rounded-lg shadow-lg space-y-6">
+      <div className="container mx-auto p-6 bg-white rounded-lg shadow-lg space-y-6 backdrop-filter backdrop-blur-lg bg-opacity-80">
         <h1 className="text-4xl font-bold mb-2 text-center animate-bounce text-blue-700">{`Performance Analysis for ${team.name}`}</h1>
         <p className="text-lg font-semibold text-center mb-4 text-gray-600">Predictions based on previous season performance.</p>
 
         {/* Player Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid  justify-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {sortedPlayers.length > 0 ? (
             sortedPlayers.map((player) => (
               <div
                 className="rounded-lg bg-gray-50 hover:shadow-lg transition-shadow duration-300 ease-in-out"
                 key={player.id}
               >
-                <div className="transform transition-transform duration-300 ease-in-out hover:scale-105">
-                  <PlayerCard player={player} className="h-full" />
-                </div>
+                <motion.div
+      className="transform scale-100"
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }} // Smooth easing
+    >
+      <PlayerCard player={player} className="h-full" />
+    </motion.div>
               </div>
             ))
           ) : (
