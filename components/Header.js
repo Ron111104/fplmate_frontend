@@ -1,28 +1,26 @@
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes, faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { getAuth, signOut } from 'firebase/auth';
-import { auth } from '@firebase/firebaseConfig'; // Adjust the path accordingly
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const router = useRouter();
   const [profilePhoto, setProfilePhoto] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const loggedInStatus = localStorage.getItem("isLoggedIn");
     const email = sessionStorage.getItem("email");
-    const photo = sessionStorage.getItem("profilePhoto"); // Get profile photo URL
+    const photo = sessionStorage.getItem("profilePhoto");
     setIsLoggedIn(loggedInStatus === "true" && email !== null && email !== "");
-    setProfilePhoto(photo); // Set profile photo URL
-    console.log(photo);
+    setProfilePhoto(photo);
   }, []);
-  
+
   // Logout function
   const handleLogout = async () => {
     const auth = getAuth();
@@ -39,6 +37,13 @@ export default function Header() {
     setIsProfileOpen(!isProfileOpen);
   };
 
+  // Determine the active link
+  const getLinkClassName = (path) => {
+    return router.pathname === path
+      ? "font-bold text-blue-500" // Highlight active link
+      : "text-black hover:text-blue-500"; // Normal link
+  };
+
   return (
     <header className="bg-white shadow-lg">
       <motion.div
@@ -48,22 +53,23 @@ export default function Header() {
         transition={{ duration: 0.6 }}
       >
         <div className="flex items-center">
-  <Link href="/">
-      <Image
-        src="/assets/logo.png"
-        alt="FPLMate Logo"
-        className="h-[50px] w-auto"
-        height={100}
-        width={150}
-      />
-  </Link>
-</div>
+          <Link href="/">
+            <Image
+              src="/assets/logo.png"
+              alt="FPLMate Logo"
+              className="h-[50px] w-auto"
+              height={100}
+              width={150}
+            />
+          </Link>
+        </div>
 
         <nav className="space-x-8 hidden md:flex items-center">
-          <Link href="/" className="text-black">Home</Link>
-          <Link href="/dashboard" className="text-black">Dashboard</Link>
-          <Link href="#features" className="text-black">Features</Link>
-          <Link href="/analysis" className="text-black">Analysis</Link>
+          <Link href="/" className={getLinkClassName("/")}>Home</Link>
+          <Link href="/dashboard" className={getLinkClassName("/dashboard")}>Dashboard</Link>
+          <Link href="/prediction" className={getLinkClassName("/prediction")}>Predictor</Link>
+          <Link href="/#features" className={getLinkClassName("#features")}>Features</Link>
+          <Link href="/analysis" className={getLinkClassName("/analysis")}>Analysis</Link>
 
           {isLoggedIn ? (
             <div className="relative">

@@ -29,7 +29,7 @@ export default function Hero() {
         className="absolute inset-0 object-cover w-full h-full opacity-50"
       />
       <motion.div
-        className="max-w-7xl mx-auto p-16 text-center relative z-10"
+        className="max-w-7xl mx-auto p-16 text-center relative z-0"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
