@@ -138,7 +138,7 @@ export default function PlayerForm() {
               Predicted Rating
             </h3>
             <p className="mt-2 text-3xl font-bold text-green-600 text-center">
-              {response.toFixed(2)}
+            {typeof response === 'number' ? response.toFixed(2) : 'Invalid response'}
             </p>
           </motion.div>
         )}
