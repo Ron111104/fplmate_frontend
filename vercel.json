@@ -1,0 +1,22 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "api/chatbot.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/chatbot",
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST",
+          "Access-Control-Allow-Headers": "Content-Type"
+        },
+        "methods": ["GET", "POST", "OPTIONS"],
+        "dest": "/api/chatbot"
+      }
+    ]
+  }
+  
