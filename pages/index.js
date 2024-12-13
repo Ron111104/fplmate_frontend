@@ -3,7 +3,7 @@ import Hero from '@components/Hero';
 import Features from '@components/Features';
 import Testimonials from '@components/Testimonials';
 import Footer from '@components/Footer';
-import Chatbot from '@components/chatbot';  // Import the Chatbot component
+ // Import the Chatbot component
 
 
 export default function Home() {
