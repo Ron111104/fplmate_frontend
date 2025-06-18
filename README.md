@@ -245,12 +245,12 @@ The project is optimized for Vercel:
 3. **Automatic Builds**: Vercel will build on each push to `main`.
 4. **Preview Deployments**: Enabled for feature branches.
 
-Alternatively, you can export a static site with:
+Alternatively, you can export a static site and host on any static file server:
 
-````bash
-yarn build
-yarn export
-``` and host on any static file server.
+```bash
+npm run build
+npm run export
+```
 
 ---
 
@@ -276,5 +276,3 @@ Data sourced and adapted from [vaastav/Fantasy-Premier-League](https://github.co
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-````
