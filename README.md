@@ -90,9 +90,7 @@ The application follows a component-driven architecture:
 2. **Install dependencies**
 
    ```bash
-   yarn install
-   # or
-   npm ci
+   npm install
    ```
 
 ### Configuration
@@ -118,8 +116,6 @@ NEXT_PUBLIC_ENABLE_MOCK=false
 Start the development server with hot-reloading:
 
 ```bash
-yarn dev
-# or
 npm run dev
 ```
 
@@ -183,14 +179,22 @@ fplmate_frontend/
 
 ## Scripts & Commands
 
-| Command       | Description                                  |
-| ------------- | -------------------------------------------- |
-| `yarn dev`    | Start development server at `localhost:3000` |
-| `yarn build`  | Compile and optimize for production          |
-| `yarn start`  | Run the production build locally             |
-| `yarn lint`   | Lint code with ESLint                        |
-| `yarn test`   | Run unit and integration tests with Jest     |
-| `yarn format` | Format code with Prettier                    |
+| Command          | Description                                  |
+| ---------------- | -------------------------------------------- |
+| `npm run dev`    | Start development server at `localhost:3000` |
+| `npm run build`  | Compile and optimize for production          |
+| `npm run start`  | Run the production build locally             |
+| `npm run lint`   | Lint code with ESLint                        |
+| `npm run test`   | Run unit and integration tests with Jest     |
+| `npm run format` | Format code with Prettier                    |
+
+\-------------------|------------------------------------------------|
+\| `yarn dev`        | Start development server at `localhost:3000`   |
+\| `yarn build`      | Compile and optimize for production            |
+\| `yarn start`      | Run the production build locally               |
+\| `yarn lint`       | Lint code with ESLint                          |
+\| `yarn test`       | Run unit and integration tests with Jest       |
+\| `yarn format`     | Format code with Prettier                      |
 
 ---
 
